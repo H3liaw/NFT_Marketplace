@@ -1,7 +1,8 @@
 require("@nomicfoundation/hardhat-toolbox");
-import * as dotenv from "dotenv";
+require('dotenv').config()
+// import * as dotenv from "dotenv";
 
-dotenv.config();
+// dotenv.config();
 const privateKey =
 process.env.PRIVATE_KEY_1;
 const privateKey2 = process.env.PRIVATE_KEY_2;
