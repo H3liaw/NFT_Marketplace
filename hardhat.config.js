@@ -1,22 +1,17 @@
-require("@nomicfoundation/hardhat-toolbox");
-require('dotenv').config()
-// import * as dotenv from "dotenv";
+require("@nomiclabs/hardhat-waffle");
+const fs = require('fs');
+// const infuraId = fs.readFileSync(".infuraid").toString().trim() || "";
 
-// dotenv.config();
-const privateKey =
-process.env.PRIVATE_KEY_1;
-const privateKey2 = process.env.PRIVATE_KEY_2;
-
-/** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  networks:{
-    hardhat:{
-      chainId:1337
+  defaultNetwork: "hardhat",
+  networks: {
+    hardhat: {
+      chainId: 1337
     },
     mumbai: {
       url: "https://rpc.ankr.com/polygon_mumbai",
       chainId: 80001,
-      accounts: [`${privateKey}`, `${privateKey2}`],
+      accounts: [process.env.privateKey] ,
       verify: {
         etherscan: {
           apiKey: "",
@@ -27,7 +22,7 @@ module.exports = {
     polygan: {
       url: "https://polygon-rpc.com",
       chainId: 137,
-      accounts: [`${privateKey}`, `${privateKey2}`],
+      accounts: [process.env.privateKey],
       verify: {
         etherscan: {
           apiKey: "",
@@ -36,5 +31,13 @@ module.exports = {
       }
     }
   },
-  solidity: "0.8.4",
+  solidity: {
+    version: "0.8.4",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200
+      }
+    }
+  }
 };

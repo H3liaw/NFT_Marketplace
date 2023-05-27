@@ -13,8 +13,7 @@ contract NFT is ERC721URIStorage{
     constructor(address marketPlaceAddress) ERC721("Metavers Tokens","MET"){
         contractAddress = marketPlaceAddress;
     }
-
-
+    
     function createToken(string memory tokenURI)public returns(uint){
         _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
